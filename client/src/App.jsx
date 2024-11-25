@@ -1,27 +1,36 @@
-import React, {useEffect, useState } from "react";
-import axios from 'axios';
-import SideBar from './components/sidebar.jsx';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import Comprobantes from "./pages/Comprobantes.jsx";
+import Contribuyentes from "./pages/Contribuyentes.jsx";
+import Clientes from "./pages/Clientes.jsx";
+import Productos from "./pages/Productos.jsx";
+
+import Sidebar from "./components/sidebar.jsx";
+import Prueba from "./components/prueba.jsx";
 
 function App() {
-    const [backendData, setBackendData] = useState([]);
-
-    const URI = "http://localhost:5000/api";  // Asegúrate de que la URL esté correcta
-
-    const getApi = async () => {
-        const res = await axios.get(URI);
-        setBackendData(res.data.users);  // Guardamos el arreglo de usuarios
-    };
-
-    useEffect(() => {
-        getApi();  // Llamamos a la función para obtener los datos de la API
-    }, []);  // El array vacío asegura que solo se ejecute una vez al montar el componente
-
-    return (
-      <>
-        <SideBar></SideBar>
-      </>
-    );
+  return (
+    <>
+      <Router>
+        <div>
+          <Sidebar />
+          <div>
+            <Routes>
+              <Route path="/comprobantes" element={<Comprobantes />} />
+              <Route path="/contribuyentes" element={<Contribuyentes />} />
+              <Route path="/clientes" element={<Clientes />} />
+              <Route path="/productos" element={<Productos />} />
+            </Routes>
+          </div>
+        </div>
+      </Router>
+      {//<Prueba>
+        
+      //</Prueba>
+      }
+    </>
+  );
 }
-
 
 export default App;
