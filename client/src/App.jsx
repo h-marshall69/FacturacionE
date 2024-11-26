@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Router>
-        <div>
+        <div className="bg-white dark:bg-gray-900 min-h-screen">
           <Sidebar />
           <div>
             <Routes>
